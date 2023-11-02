@@ -1,0 +1,37 @@
+% !Mode:: "TeX:UTF-8"
+% \documentclass[master,openright,color,AutoFakeBold=true]{buaathesisproposal}
+\documentclass[master,openright,AutoFakeBold=true]{buaathesisproposal}
+
+% 参考文献
+% 参考文献输出方式，numerical为按照出现顺序，authoryear为按照作者姓名和年份
+\bibliographystyle{gbt7714-numerical}
+
+\begin{document}
+
+% 用户信息
+\include{com_info}
+
+% 中英封面
+\maketitle
+% 目录
+\makecontents
+
+% 正文页码、页眉、页脚样式
+\pagestyle{mainmatter}
+
+% 正文
+\section{选题依据}
+主要阐述论文选题的背景与研究工作的意义。
+\section{文献综述}
+主要阐述研究方向国内外的研究现状、最新研究成果及不足之处。
+\section{研究方案}
+主要阐述研究目标、主要研究内容、拟采用的研究方法和可行性分析、可能的创新之处等。
+\section{预期目标和成果}
+主要阐述论文的预期目标与学术论文、专利等成果。
+\section{学位论文实施计划}
+主要阐述论文详细进度安排。
+\section{主要参考文献}
+\nocite{*}
+\bibliography{bibs}
+
+\end{document}

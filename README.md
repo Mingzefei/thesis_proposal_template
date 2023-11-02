@@ -4,6 +4,8 @@
 
 ## 项目说明
 
+主要参考 [BHOSC/BUAAthesis](https://github.com/BHOSC/BUAAthesis).
+
 #TODO
 
 ## 预览
