@@ -11,6 +11,9 @@
 ## 预览
 
 查阅 [main.pdf](./main.pdf) 文件。
+封面对比如下：
+![](https://cdn.jsdelivr.net/gh/Mingzefei/myimage@main/imgSnipaste_2023-11-04_16-18-18.png)
+
 
 ## 使用
 
