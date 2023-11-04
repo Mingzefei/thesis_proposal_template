@@ -1,6 +1,6 @@
 % !Mode:: "TeX:UTF-8"
-% \documentclass[master,openright,color,AutoFakeBold=true]{buaathesisproposal}
-\documentclass[master,openright,AutoFakeBold=true]{buaathesisproposal}
+% \documentclass[master,color,AutoFakeBold=true]{buaathesisproposal}
+\documentclass[master,AutoFakeBold=true]{buaathesisproposal}
 
 % 参考文献
 % 参考文献输出方式，numerical为按照出现顺序，authoryear为按照作者姓名和年份
@@ -23,20 +23,211 @@
 \section{选题依据}
 主要阐述论文选题的背景与研究工作的意义。
 \subsection{背景}
+
 选题背景
+
 \subsubsection{背景一}
-背景一
+
+研究生在导师的指导下，根据所研究的课题背景，进行开题报告选题。该选题应属于本学科范围。各单位导师应充分重视，指导、督促、检查学生做好开题报告及文献综述工作。同时要求研究生主动与导师沟通，积极、严谨地完成开题报告。
+
 \subsubsection{背景二}
-背景二
+
+开题报告内容应包含：
+（1）开题题目；
+（2）选题依据，包括选题的意义、必要性和前沿性；
+（3）文献综述，一般应针对研究方向或具体问题进行深入调研、对相关研究现状进行系统的分析、说明，并指出存在的问题或不足，阐述发展趋势并引出拟研究问题；
+（4）研究方案，一般包括研究目标、研究内容、要解决的关键问题、拟采取的研究方法、技术路线等；
+（5）预期目标和成果；
+（6）学位论文实施计划；
+（7）主要参考文献等。
+
+
+硕士研究生的开题报告字数一般不少于1.5万字，博士研究生的开题报告一般不少于4万字。
+
 
 \section{文献综述}
+
 主要阐述研究方向国内外的研究现状、最新研究成果及不足之处。
+
+\subsection{参考文献引用方法}
+
+本项目使用 Bibtex 的方法管理参考文献。
+BibTeX 是一种格式和一个程序，用于协调LaTeX的参考文献处理. BibTeX 使用数据库的的方式来管理参考文献. BibTeX 文件的后缀名为 .bib .
+
+\subsubsection{形成 .bib 文件}
+
+在 Google Scholar 等学术搜索引擎中搜索文献，点击引用，选择 BibTeX，复制文献信息，粘贴到 .bib 文件中即可。
+例如，文献 \cite{kottwitz2011latex} 的 BibTeX 信息为
+\begin{lstlisting}[
+    caption={bib格式文件示例},
+    label={code:bib-sample},
+]
+@book{kottwitz2011latex,
+  title={LaTeX Beginner's Guide},
+  author={Kottwitz, S.},
+  isbn={9781847199867},
+  url={http://books.google.com.hk/books?id=rB1Cb62dVnUC},
+  year={2011},
+  publisher={Packt Publishing}
+}
+\end{lstlisting}
+
+\subsubsection{引用参考文献}
+
+在正文中引用参考文献，使用 \verb|\cite{key}| 命令即可，其中 key 为 .bib 文件中文献的标识符。
+例如，在正文中使用 \verb|\cite{kottwitz2011latex}| 命令，即可在正文中引用代码~\ref{code:bib-sample} 中的文献。
+
+\subsubsection{编译参考文献}
+
+编译参考文献，需要先编译 .tex 文件，再编译 .bib 文件，最后再编译 .tex 文件两次。
+例如，使用 \verb|pdflatex| 编译 .tex 文件，使用 \verb|bibtex| 编译 .bib 文件，再次使用 \verb|pdflatex| 编译 .tex 文件，最后再次使用 \verb|pdflatex| 编译 .tex 文件。
+
+
+\subsection{参考文献格式调整}
+
+模板参考文献格式采用国家标准 GB/T 7714-2005 《信息与文献 参考文献著录规则》之中描述的格式。代码实现为 \href{http://github.com/CTeX-org/gbt7714-bibtex-style/}{CTeX-org/gbt7714-bibtex-style v2.1.5}。参考文献详细说明请见该项目 README.md。
+
+参考文献提供两种排序方式，分别为 按出现顺序（默认）和 按作者姓名和年份，请按需在模板 main.tex 中的第7行做相应修改。
+
+注意：根据 GB/T 7714-2005 中 8.4 节 出版项  中相关规定：
+
+无出版地的中文文献著录 “出版地不详”，外文文献著录 “S.l.”
+无出版者的中文文献著录 “出版者不详”，外文文献著录 “s.n.”
+相应的解决方法为
+
+若编译的参考文献条目中出现 “出版地不详” 或 “S.l.”，请在相应的 bib 条目中添加 address 相关信息
+若编译的参考文献条目中出现 “出版者不详” 或 “s.n.”，请在相应的 bib 条目中添加 publisher 相关信息
+实际使用中应避免出现 ［S.l.］:［s.n.］ 这样的著录形式。
+
 \section{研究方案}
 主要阐述研究目标、主要研究内容、拟采用的研究方法和可行性分析、可能的创新之处等。
+
+\subsection{图片插入}
+
+插入图片的方法如代码~\ref{code:fig-sample} 所示。
+\begin{lstlisting}[
+    caption={图片插入示例},
+    label={code:fig-sample},
+]
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{buaa_logo}
+    \caption{BUAA LOGO}
+    \label{fig:buaa_logo}
+\end{figure}
+\end{lstlisting}
+其中，\verb|[htbp]| 为图片位置，\verb|h| 为 here，\verb|t| 为 top，\verb|b| 为 bottom，\verb|p| 为 page，\verb|\centering| 为居中，\verb|\includegraphics| 为插入图片，\verb|width=0.5\textwidth| 为图片宽度为正文宽度的一半，\verb|buaa_logo| 为图片文件名，\verb|caption| 为图片标题，\verb|label| 为图片标签，可用于引用图片。
+上述代码运行结果如图~\ref{fig:buaa_logo} 所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{buaa_logo}
+    \caption{BUAA LOGO}
+    \label{fig:buaa_logo}
+\end{figure}
+
+
+如果需要插入多张图片，可以使用 \verb|subfigure| 环境，如代码~\ref{code:subfig-sample} 所示。
+\begin{lstlisting}[
+    caption={子图插入示例},
+    label={code:subfig-sample},
+]
+\begin{figure}[htbp]
+    \centering
+    \subfigure[BUAA LOGO1]{
+        \includegraphics[width=0.3\textwidth]{buaa_logo}
+        \label{fig:subfig-buaa_logo1}
+    }
+    \subfigure[]{
+        \includegraphics[width=0.3\textwidth]{buaa_logo}
+        \label{fig:subfig-buaa_logo2}
+    }
+    \caption{BUAA LOGO}
+    \label{fig:subfig-sample}
+\end{figure}
+\end{lstlisting} 
+其中，\verb|\subfigure| 为子图，\verb|[width=0.3\textwidth]| 为子图宽度为正文宽度的三分之一，\verb|buaa_logo| 为图片文件名，\verb|label| 为图片标签，可用于引用图片，\verb|caption| 为图片标题。
+上述代码运行结果如图~\ref{fig:subfig-sample} 所示。
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure[BUAA LOGO1]{
+        \includegraphics[width=0.3\textwidth]{buaa_logo}
+        \label{fig:subfig-buaa_logo1}
+    }
+    \subfigure[]{
+        \includegraphics[width=0.3\textwidth]{buaa_logo}
+        \label{fig:subfig-buaa_logo2}
+    }
+    \caption{BUAA LOGO}
+    \label{fig:subfig-sample}
+\end{figure}
+
+\subsection{表格插入}
+
+插入表格的方法如代码~\ref{code:tab-sample} 所示。
+\begin{lstlisting}[
+    caption={表格插入示例},
+    label={code:tab-sample},
+]
+\begin{table}[htbp]
+    \centering
+    \caption{表格示例}
+    \label{tab:tab-sample}
+    \begin{tabular}{ccc}
+        \toprule
+        1 & 2 & 3 \\
+        \midrule
+        4 & 5 & 6 \\
+        7 & 8 & 9 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\end{lstlisting}
+其中，\verb|[htbp]| 为表格位置，\verb|h| 为 here，\verb|t| 为 top，\verb|b| 为 bottom，\verb|p| 为 page，\verb|\centering| 为居中，\verb|caption| 为表格标题，\verb|label| 为表格标签，可用于引用表格，\verb|tabular| 为表格，\verb|{ccc}| 为表格列数，\verb|\toprule| 为表格上边框，\verb|\midrule| 为表格中边框，\verb|\bottomrule| 为表格下边框。
+上述代码运行结果如表~\ref{tab:tab-sample} 所示。
+
+\begin{table}[htbp]
+    \centering
+    \caption{表格示例}
+    \label{tab:tab-sample}
+    \begin{tabular}{ccc}
+        \toprule
+        1 & 2 & 3 \\
+        \midrule
+        4 & 5 & 6 \\
+        7 & 8 & 9 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{公式插入}
+
+插入公式的方法如代码~\ref{code:eq-sample} 所示。
+\begin{lstlisting}[
+    caption={公式插入示例},
+    label={code:eq-sample},
+]
+\begin{equation}
+    \label{eq:eq-sample}
+    a^2 + b^2 = c^2
+\end{equation}
+\end{lstlisting}
+其中，\verb|equation| 为公式，\verb|label| 为公式标签，可用于引用公式。
+上述代码运行结果如公式~\ref{eq:eq-sample} 所示。
+
+\begin{equation}
+    \label{eq:eq-sample}
+    a^2 + b^2 = c^2
+\end{equation}
+
+
 \section{预期目标和成果}
 主要阐述论文的预期目标与学术论文、专利等成果。
+
 \section{学位论文实施计划}
 主要阐述论文详细进度安排。
+
 \section{主要参考文献}
 \nocite{*}
 \bibliography{bibs}
