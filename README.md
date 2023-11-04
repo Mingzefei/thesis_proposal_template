@@ -52,3 +52,5 @@ make depclean # 删除编译过程中生成的文件（包括 pdf）
 
 1. 本项目主要参考 [BHOSC/BUAAthesis](https://github.com/BHOSC/BUAAthesis)，同时沿用其开源协议 GPLv3 和 LPPL。
 2. 文件格式转换请参考 [文件格式相关](https://github.com/BHOSC/BUAAthesis#%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E7%9B%B8%E5%85%B3).
+3. 封面为手工调整，所以存在一定细微差异和不影响结果的报错。介意的同学可以在 Word 中填好信息，转化为 PDF 后进行替换。
+4. 项目依据辅导员及往届学长提供的开题报告 Word 模板制作，所以确实存在排版上不严谨的地方。当前项目目标仅是通过开题审查。

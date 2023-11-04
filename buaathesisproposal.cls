@@ -33,7 +33,8 @@ The LaTeX template for thesis proposal of BUAA]
 \DeclareOption{color}{\buaa@colortrue}
 \DeclareOption{twoteacher}{\buaa@twoteachertrue}
 \DeclareOption{ktreport}{\buaa@ktreporttrue}
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexart}}
+\PassOptionsToPackage{quiet}{fontspec}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexart}} % 抑制 ctex 中一些不影响编译的输出
 \ProcessOptions\relax
 \LoadClass[a4paper,UTF8,titlepage,zihao=-4,AutoFakeBold]{ctexart}
 
@@ -73,7 +74,12 @@ The LaTeX template for thesis proposal of BUAA]
 \newcommand{\hwxingkai}{\CJKfamily{hwxingkai}}
 \newcommand{\hwkaiti}{\CJKfamily{hwkaiti}}
 
-% 修改了原本的预设字体，见：https://www.jianshu.com/p/03c121c0868d
+% 修改了原本的预设字体
+% 中文字号：https://www.jianshu.com/p/03c121c0868d
+% （但我仍不确定 Word 中的 48/32 号字是否就是 4832 pt）
+% 设置方法：\fontsize{字体尺寸}{行间距}\selectfont
+% LaTeX中，默认的行距是字体字号的1.2倍，新版本的Word默认行距是字体字号的1.3倍
+% 而在 ctexart 中默认行距是字号的 1.56 倍
 \newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont}
 \newcommand{\yihao}{\fontsize{26pt}{39pt}\selectfont}
 \newcommand{\xiaoyi}{\fontsize{24pt}{36pt}\selectfont}
@@ -348,9 +354,6 @@ The LaTeX template for thesis proposal of BUAA]
 % 图表标题
 
 \RequirePackage{caption}
-\DeclareCaptionFormat{bachelorfigure}{\songti\zihao{5}{#1\textrm{#2}#3}}
-\DeclareCaptionFormat{bachelortable}{\heiti\bf\zihao{5}{#1\textrm{#2}#3}}
-\DeclareCaptionFormat{bachelorlstlisting}{\songti\bf\zihao{5}{#1\textrm{#2}#3}}
 \DeclareCaptionFormat{masterfigure}{\bf\songti\zihao{5}{#1\textrm{#2}#3}}
 \DeclareCaptionFormat{mastertable}{\bf\songti\zihao{5}{#1\textrm{#2}#3}}
 \DeclareCaptionFormat{masterlstlisting}{\bf\songti\zihao{5}{#1\textrm{#2}#3}}
@@ -371,6 +374,7 @@ The LaTeX template for thesis proposal of BUAA]
 % 图片表格标题命令，主要用于混排
 \newcommand\figcaption{\def\@captype{figure}\caption}
 \newcommand\tabcaption{\def\@captype{table}\caption}
+
 
 %%%%%%%%%% other settings %%%%%%%%%%
 % 杂项
@@ -435,7 +439,7 @@ The LaTeX template for thesis proposal of BUAA]
 \renewcommand{\maketitle}{%
     \titlech
     \songti
-    \xiaosi
+    \zihao{-4}
 }
 % 目录页
 \newcommand{\makecontents}{
