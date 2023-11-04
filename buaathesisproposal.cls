@@ -73,8 +73,8 @@ The LaTeX template for thesis proposal of BUAA]
 \newcommand{\hwxingkai}{\CJKfamily{hwxingkai}}
 \newcommand{\hwkaiti}{\CJKfamily{hwkaiti}}
 
-% 预定义的字体大小，以后用得着
-\newcommand{\xiaochuhao}{\fontsize{32pt}{\baselineskip}\selectfont}
+% 修改了原本的预设字体，见：https://www.jianshu.com/p/03c121c0868d
+\newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont}
 \newcommand{\yihao}{\fontsize{26pt}{39pt}\selectfont}
 \newcommand{\xiaoyi}{\fontsize{24pt}{36pt}\selectfont}
 \newcommand{\erhao}{\fontsize{22pt}{33pt}\selectfont}
@@ -86,6 +86,8 @@ The LaTeX template for thesis proposal of BUAA]
 \newcommand{\wuhao}{\fontsize{10.5pt}{15.75pt}\selectfont}
 \newcommand{\xiaowu}{\fontsize{9pt}{13.5pt}\selectfont}
 \newcommand{\liuhao}{\fontsize{7.5pt}{11.25pt}\selectfont}
+\newcommand{\fortyeight}{\fontsize{48pt}{60pt}\selectfont}
+\newcommand{\thirtytwo}{\fontsize{32pt}{48pt}\selectfont}
 
 %%%%%%%%%% color %%%%%%%%%%
 % 颜色设置
@@ -98,32 +100,16 @@ The LaTeX template for thesis proposal of BUAA]
 
 %%%%%%%%%% page margin %%%%%%%%%%
 % 页面边距
-
+% 上 25.4 mm，下 25.4 mm，左 20 mm，右 20 mm
+% 页眉顶端距离 15 mm，页脚底端距离 17.5 mm
 \RequirePackage{geometry}
 \newgeometry{
-    top=30mm, bottom=25mm, left=30mm, right=20mm,
-    headsep=5mm, includefoot
+    top=25.4mm, bottom=33.3mm, left=20mm, right=20mm,
+    headsep=10.4mm, headheight=5mm, footskip=7.9mm,
 }
-\savegeometry{bachelorgeometry}
+\savegeometry{geometry}
+\loadgeometry{geometry}
 
-% geometry for tasks pages for bachelor thesis, see also #270
-\newgeometry{
-    top=30mm, bottom=25mm, left=30mm, right=20mm,
-    headsep=5mm
-}
-\savegeometry{bachelortaskgeometry}
-
-\newgeometry{
-    top=25mm, bottom=25mm, left=30mm, right=20mm,
-    headsep=5mm, headheight=10mm, footskip=10mm,
-}
-\savegeometry{mastergeometry}
-
-\ifbuaa@bachelor
-    \loadgeometry{bachelorgeometry}
-\else
-    \loadgeometry{mastergeometry}
-\fi
 
 %%%%%%%%%% space %%%%%%%%%%
 % 其他间距
@@ -173,18 +159,28 @@ The LaTeX template for thesis proposal of BUAA]
 % 标题
 
 % 汉化
-\renewcommand{\contentsname}{\heiti\zihao{-2}\bfseries 目\qquad 录}
-
+\renewcommand{\contentsname}{\hfill\heiti\sanhao\bfseries 目\qquad 录 \hfill}
+% \CTEXsetup[format={\Large\bfseries}]{section}
+% 设置章节编号
+\renewcommand\thesection{\chinese{section}}
+\renewcommand\thesubsection{\arabic{section}.\arabic{subsection}}
+\renewcommand\thesubsubsection{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
 % 格式
 \ctexset{
     section={
-        format={\zihao{-4}\heiti},
+        format={\bfseries\sihao\heiti},
         aftername={\quad},
         beforeskip={.5\baselineskip},
         afterskip={.5\baselineskip},
     },
     subsection={
-        format={\zihao{-4}\heiti},
+        format={\sihao\heiti},
+        aftername={\quad},
+        beforeskip={.5\baselineskip},
+        afterskip={.5\baselineskip},
+    },
+    subsubsection={
+        format={\bfseries\xiaosi\songti},
         aftername={\quad},
         beforeskip={.5\baselineskip},
         afterskip={.5\baselineskip},
@@ -195,9 +191,11 @@ The LaTeX template for thesis proposal of BUAA]
 % 目录
 
 \RequirePackage{titletoc}
-\titlecontents{section}[2em]{\vspace{0.1\baselineskip}\songti\zihao{-4}}{\thecontentslabel\ }{}
+\titlecontents{section}[2em]{\vspace{0.1\baselineskip}\xiaosi\songti}{\thecontentslabel\ }{}
     {\hspace{.5em}\titlerule*[4pt]{$\cdot$}\contentspage}
-\titlecontents{subsection}[4em]{\vspace{0.1\baselineskip}\songti\zihao{-4}}{\thecontentslabel\ }{}
+\titlecontents{subsection}[4em]{\vspace{0.1\baselineskip}\xiaosi\songti}{\thecontentslabel\ }{}
+    {\hspace{.5em}\titlerule*[4pt]{$\cdot$}\contentspage}
+\titlecontents{subsubsection}[6em]{\vspace{0.1\baselineskip}\xiaosi\songti}{\thecontentslabel\ }{}
     {\hspace{.5em}\titlerule*[4pt]{$\cdot$}\contentspage}
 
 
@@ -377,28 +375,11 @@ The LaTeX template for thesis proposal of BUAA]
 %%%%%%%%%% other settings %%%%%%%%%%
 % 杂项
 
-% 设置<附录>的图表编号与当前附录章号关联
-\newcommand{\rmrelation}{
-    % 图、表、公式编号随 chapter 清零
-    \@addtoreset{figure}{chapter}
-    \@addtoreset{table}{chapter}
-    \@addtoreset{equation}{chapter}
-    %图、表、公式编号章节关联
-    \renewcommand{\thefigure}{\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@figure}
-    \renewcommand{\thetable}{\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@table}
-    \renewcommand{\theequation}{\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@equation}
-}
-\let\oldappendix\appendix
-\renewcommand{\appendix}{
-    \oldappendix\rmrelation
-}
-
 % 下划线
 \RequirePackage{ulem}
 
 % 设置行距
 \RequirePackage{setspace}
-
 
 %%%%%%%%%% index %%%%%%%%%%
 % 首页
@@ -406,55 +387,45 @@ The LaTeX template for thesis proposal of BUAA]
 % 中文首页
 \newcommand{\titlech}{
    \begin{titlepage}
+        \newgeometry{
+            top=30.9mm, bottom=21.8mm, left=20mm, right=20mm,
+        }
+        \begin{flushleft}
+            \zihao{5}\heiti\bfseries
+            中图分类号：\buaa@category  \\
+            \vskip 6pt
+            学\quad\qquad 号：\buaa@studentID\\
+        \end{flushleft}
         \begin{center}
-            \begin{spacing}{1.5}
-                {
-                    \zihao{5}\heiti\bfseries
-                    \begin{flushleft}
-                        中图分类号：\buaa@category  \\
-                        学\quad\qquad 号：\buaa@studentID\\
-                        \ifbuaa@classfied
-                            \buaa@clevel\ding{73}~~\buaa@climit \\
-                        \else
-                            \vskip 20bp
-                        \fi
-                    \end{flushleft}
-                }
-                \vskip 60bp
-                \includegraphics[width=.5\textwidth]{figure/buaaname_ch.pdf}
-                \vskip 30bp
-                \centerline{\zihao{0}\ziju{0.2}\hwxingkai\buaa@degreehead 论文开题报告}
-                ~~\\
-                %\vskip 100bp
-                \vspace*{\stretch{5}}
-                \begin{minipage}[h]{.85\textwidth}
-                    \begin{spacing}{3}
-                        % actually, it should be 1.5, but I think 3 will be prefect.
-                        \centering{\xiaochuhao\songti\bfseries\buaa@thesistitle}
-                    \end{spacing}
-                \end{minipage}
-                %\vspace{5bp}
-                % the space between title and subtitle, however, it seems doesn't work.
-                \begin{minipage}[h]{.75\textwidth}
-                    \begin{spacing}{1.5}
-                        \centering{\heiti\zihao{3}\buaa@thesissubtitle}
-                    \end{spacing}
-                \end{minipage}
-                \vspace*{\stretch{3}}
-                ~~\\
-                %\vskip 80bp
+        \vskip 21 mm
+        \includegraphics[width=.55\textwidth]{figure/buaaname_ch.pdf}
+        \vskip 14 mm
+        \begin{minipage}[h]{\textwidth}
+            \centering
+            \fortyeight\ziju{0.1}\hwxingkai\buaa@degreehead 论文开题报告  
+        \end{minipage}
+        \vskip 17 mm
+        \begin{minipage}[h]{.85\textwidth}
+            \centering
+            \begin{spacing}{1}
+                \thirtytwo\heiti\bfseries\buaa@thesistitle
             \end{spacing}
+        \end{minipage}
         \end{center}
-                {
-                    \heiti\zihao{4}\ziju{0.2}
-                    \begin{tabular}[b]{ll}
-                        学生姓名：& \buaa@thesisauthor\\[.4ex]
-                        指导教师：& \buaa@teacher \quad\buaa@teacherdegree\\[.4ex]
-                        学科专业：& \buaa@major\\[.4ex]
-                        培养学院：& \buaa@school 学院\\
-                        报告日期：& \buaa@thesisdateyear ~~年~~\buaa@thesisdatemonth ~~月~~\buaa@thesisdateday ~~日\\
-                    \end{tabular}
-                }
+        \vspace*{\fill}
+        \begin{minipage}[!b]{\textwidth}
+            \begin{spacing}{2.6}
+                \heiti\zihao{4}
+                \hspace{19 mm}
+                \begin{tabular}[b]{ll}
+                    学生姓名：& \buaa@thesisauthor\\
+                    指导教师：& \buaa@teacher \quad\buaa@teacherdegree\\
+                    学科专业：& \buaa@major\\
+                    培养学院：& \buaa@school 学院\\
+                    报告日期：& \buaa@thesisdateyear ~~年~~\buaa@thesisdatemonth ~~月~~\buaa@thesisdateday ~~日\\
+                \end{tabular}
+            \end{spacing}
+        \end{minipage}
     \end{titlepage}
 }
 
@@ -464,7 +435,7 @@ The LaTeX template for thesis proposal of BUAA]
 \renewcommand{\maketitle}{%
     \titlech
     \songti
-    \zihao{-4}
+    \xiaosi
 }
 % 目录页
 \newcommand{\makecontents}{
@@ -528,12 +499,12 @@ The LaTeX template for thesis proposal of BUAA]
     \def\buaa@teacher{#1}
     \def\buaa@teachereng{#2}
 }
-% 副指导老师
-\def\buaa@subteacher{}
-\def\buaa@subteachereng{}
-\newcommand{\subteacher}[2]{%
-    \def\buaa@subteacher{#1}
-    \def\buaa@subteachereng{#2}
+% 导师职称
+\def\buaa@teacherdegree{}
+\def\buaa@teacherdegreeeng{}
+\newcommand{\teacherdegree}[2]{%
+    \def\buaa@teacherdegree{#1}
+    \def\buaa@teacherdegreeeng{#2}
 }
 % 分类号
 \def\buaa@category{}
@@ -579,38 +550,4 @@ The LaTeX template for thesis proposal of BUAA]
 \fi
 
 
-%%%%%%%%%% master user info %%%%%%%%%%
-% 研究生信息
-
-% 保密等级
-\def\buaa@clevel{}
-\def\buaa@climit{}
-\newcommand{\mibao}[2]{%
-    \def\buaa@clevel{#1}
-    \def\buaa@climit{#2}
-}
-% 研究方向
-\def\buaa@direction{}
-\newcommand{\direction}[1]{
-    \def\buaa@direction{#1}
-}
-% 导师职称
-\def\buaa@teacherdegree{}
-\def\buaa@teacherdegreeeng{}
-\newcommand{\teacherdegree}[2]{%
-    \def\buaa@teacherdegree{#1}
-    \def\buaa@teacherdegreeeng{#2}
-}
-% 副导师职称
-\def\buaa@subteacherdegree{}
-\def\buaa@subteacherdegreeeng{}
-\newcommand{\subteacherdegree}[2]{%
-    \def\buaa@subteacherdegree{#1}
-    \def\buaa@subteacherdegreeeng{#2}
-}
-% 申请学位级别(题名页)
-\def\buaa@appdegree{}
-\newcommand{\applydegree}[1]{%
-    \def\buaa@appdegree{#1}
-}
 %%%%% 'buaathesisproposal.cls' %%%%% END
