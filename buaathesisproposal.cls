@@ -466,49 +466,33 @@ The LaTeX template for thesis proposal of BUAA]
 }
 % 学院
 \def\buaa@school{}
-\def\buaa@schooleng{}
-\newcommand{\school}[2]{%
+\newcommand{\school}[1]{%
     \def\buaa@school{#1}
-    \def\buaa@schooleng{#2}
 }
 % 专业
 \def\buaa@major{}
-\def\buaa@majoreng{}
-\newcommand{\major}[2]{%
+\newcommand{\major}[1]{%
     \def\buaa@major{#1}
-    \def\buaa@majoreng{#2}
 }
 % 论文标题和副标题
 \def\buaa@thesistitle{}
-\def\buaa@thesissubtitle{}
-\def\buaa@thesistitleeng{}
-\def\buaa@thesissubtitleeng{}
-\newcommand{\thesistitle}[4]{%
+\newcommand{\thesistitle}[1]{%
     \def\buaa@thesistitle{#1}
-    \def\buaa@thesissubtitle{#2}
-    \def\buaa@thesistitleeng{#3}
-    \def\buaa@thesissubtitleeng{#4}
 }
 % 作者
 \def\buaa@thesisauthor{}
-\def\buaa@thesisauthoreng{}
-\newcommand{\thesisauthor}[2]{%
+\newcommand{\thesisauthor}[1]{%
     \def\buaa@thesisauthor{#1}
-    \def\buaa@thesisauthoreng{#2}
 }
 % 指导老师
 \def\buaa@teacher{}
-\def\buaa@teachereng{}
-\newcommand{\teacher}[2]{%
+\newcommand{\teacher}[1]{%
     \def\buaa@teacher{#1}
-    \def\buaa@teachereng{#2}
 }
 % 导师职称
 \def\buaa@teacherdegree{}
-\def\buaa@teacherdegreeeng{}
-\newcommand{\teacherdegree}[2]{%
+\newcommand{\teacherdegree}[1]{%
     \def\buaa@teacherdegree{#1}
-    \def\buaa@teacherdegreeeng{#2}
 }
 % 分类号
 \def\buaa@category{}
